@@ -1,41 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>File Upload</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
-</head>
-<body class="bg-dark text-light">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card text-light border-light">
-                    <div class="app_hdr_wrpr">
-                        <span>Css Encrypter</span>
-                    </div>
-                    <div class="card-body">
-                        <form action="/upload" method="post" enctype="multipart/form-data">
-                            <div class="form-group">
-                                <label for="css_file">CSS File:</label>
-                                <input type="file" class="form-control-file bg-dark text-light border-light" id="css_file" name="css_file" required>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Class Encrypter</title>
+        <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    </head>
+    <body class="bg-dark text-light">
+        <div class="mn_wrpr">
+            <div class="app-ttl_wrpr">
+                <span>Class Encrypter</span>
+            </div>
+            <div class="app-crd_cntnr">
+                <div class="app-crd-cntnt_wrpr">
+                    <div class="sdbr_wrpr">
+                        <div class="sdbr-ttl_cntnr">
+                            <i class="fa-solid fa-file-code"></i>
+                            <span>Uploaded Files</span>
+                        </div>
+                        <div class="sdbr-cntnt_wrpr">
+                            <div class="cntnt-itm_wrpr">
+                                <div class="itm-hdr_wrpr">
+                                    <div class="hdr-cntnt_cntnr">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+                                            <path d="M6 28L4 3H28L26 28L16 31L6 28Z" fill="#E44D26"/>
+                                            <path d="M26 5H16V29.5L24 27L26 5Z" fill="#F16529"/>
+                                            <path d="M9.5 17.5L8.5 8H24L23.5 11H11.5L12 14.5H23L22 24L16 26L10 24L9.5 19H12.5L13 21.5L16 22.5L19 21.5L19.5 17.5H9.5Z" fill="white"/>
+                                        </svg>
+                                        <span id="flNm">index.html</span>
+                                    </div>
+                                    <i class="fa-solid fa-angle-down"></i>
+                                </div>
+                                <div class="sub-itms_wrpr">
+                                    <div class="cntnt_wrpr">
+                                        <div class="sub-itm_wrpr">
+                                            <i class="fa-regular fa-circle-dot"></i>
+                                            <div class="itm-cntnt_cntnr">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+                                                    <path d="M6 28L4 3H28L26 28L16 31L6 28Z" fill="#1172B8"/>
+                                                    <path d="M26 5H16V29.5L24 27L26 5Z" fill="#33AADD"/>
+                                                    <path d="M19.5 17.5H9.5L9 14L17 11.5H9L8.5 8.5H24L23.5 12L17 14.5H23L22 24L16 26L10 24L9.5 19H12.5L13 21.5L16 22.5L19 21.5L19.5 17.5Z" fill="white"/>
+                                                </svg>
+                                                <span id="flNm">hell.css</span>
+                                            </div>
+                                        </div>
+                                        <div class="sub-itm_wrpr">
+                                            <i class="fa-regular fa-circle-dot"></i>
+                                            <div class="itm-cntnt_cntnr">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+                                                    <path d="M6 28L4 3H28L26 28L16 31L6 28Z" fill="#1172B8"/>
+                                                    <path d="M26 5H16V29.5L24 27L26 5Z" fill="#33AADD"/>
+                                                    <path d="M19.5 17.5H9.5L9 14L17 11.5H9L8.5 8.5H24L23.5 12L17 14.5H23L22 24L16 26L10 24L9.5 19H12.5L13 21.5L16 22.5L19 21.5L19.5 17.5Z" fill="white"/>
+                                                </svg>
+                                                <span id="flNm">styles.css</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="html_file">HTML File:</label>
-                                <input type="file" class="form-control-file bg-dark text-light border-light" id="html_file" name="html_file" required>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Upload</button>
-                        </form>
+                        </div>
                     </div>
+                    <div class="evnt_cntnr">
+                        <div class="app-lg_wrpr">
+                            <img src="{{ url_for('static', filename='img/appLogo.jpeg') }}" alt="App Logo">
+                        </div>
+                        <div class="evnt-itm_wrpr">
+                            <label for="upldFls" class="evnt-btn">Upload Files</label>
+                            <input type="file" id="upldFls" id="css_file" name="css_file" accept=".html, .css" required />
+                        </div>
+                        <div class="evnt-itm_wrpr">
+                            <div class="evnt-btn">Start App</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="app-ftr_wrpr">
+                    <p>&copy; 2024 Created by Uveys. All rights reserved. Thanks for visiting!</p>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Bootstrap JS and dependencies -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    </body>
 </html>
