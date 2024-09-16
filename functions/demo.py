@@ -1,39 +1,19 @@
-<<<<<<< HEAD
-import re
-import os
-import base64
-import hashlib
-=======
 import os
 import re
 import base64
 import hashlib
 from pathlib import Path
->>>>>>> 40f5801 (Update App)
 
 def hash_with_salt(input_string, salt=None, length=6):
     if salt is None:
         salt = os.urandom(16)
     
     salted_input = input_string.encode() + salt
-<<<<<<< HEAD
-    
-    hash_object = hashlib.sha256(salted_input)
-    hash_bytes = hash_object.digest()
-    
-    hash_base64 = base64.urlsafe_b64encode(hash_bytes).decode()
-    
-    short_code = ''.join(filter(lambda x: not x.isdigit(), hash_base64))
-    
-    short_code = short_code.replace('-', '')
-    
-=======
     hash_object = hashlib.sha256(salted_input)
     hash_bytes = hash_object.digest()
     hash_base64 = base64.urlsafe_b64encode(hash_bytes).decode()
     short_code = ''.join(filter(lambda x: not x.isdigit(), hash_base64))
     short_code = short_code.replace('-', '')
->>>>>>> 40f5801 (Update App)
     short_code = short_code[:length]
     
     return short_code, salt
@@ -41,10 +21,6 @@ def hash_with_salt(input_string, salt=None, length=6):
 def extract_class_selectors(css_content):
     class_pattern = re.compile(r'\.[a-zA-Z_][a-zA-Z0-9_-]*')
     matches = class_pattern.findall(css_content)
-<<<<<<< HEAD
-    
-=======
->>>>>>> 40f5801 (Update App)
     return list(set(matches))
 
 def read_css_file(file_path):
@@ -52,23 +28,6 @@ def read_css_file(file_path):
         return file.read()
 
 def write_to_new_file(file_path, content):
-<<<<<<< HEAD
-    new_file_path = file_path.replace('.css', '_hashed.css')
-    with open(new_file_path, 'w') as file:
-        file.write(content)
-    return new_file_path
-def replace_class_name(css_content, old_class_name, new_class_name):
-    end_chars = ['.', ' ', ':', '::']
-    
-    old_class_name_clean = old_class_name.replace(' ', '')
-    new_class_name_clean = new_class_name.replace(' ', '')
-    
-    pattern = rf'\.{re.escape(old_class_name_clean)}(?=[{re.escape("".join(end_chars))}])'
-    
-    replacement = f'.{new_class_name_clean}'
-    updated_css = re.sub(pattern, replacement, css_content)
-    
-=======
     file_stem = file_path.stem
     file_suffix = file_path.suffix
     
@@ -83,33 +42,11 @@ def replace_class_name(css_content, old_class_name, new_class_name):
     pattern = rf'\.{re.escape(old_class_name.lstrip("."))}(?=[\s\.\:\:\-])'
     replacement = f'.{new_class_name}'
     updated_css = re.sub(pattern, replacement, css_content)
->>>>>>> 40f5801 (Update App)
     return updated_css
 
 def process_and_encrypt_class_names(css_content):
     class_names = extract_class_selectors(css_content)
     class_mapping = {}
-<<<<<<< HEAD
-    
-    for class_name in class_names:
-        class_name_clean = class_name.lstrip('.')
-        encrypted_name, _ = hash_with_salt(class_name_clean)
-        
-        encrypted_class_name = '.' + encrypted_name
-        class_mapping[class_name] = encrypted_class_name
-    
-    for original_class, encrypted_class in class_mapping.items():
-        css_content = replace_class_name(css_content, original_class.lstrip('.'), encrypted_class.lstrip('.'))
-    
-    return css_content
-
-css_file_path = 'styles.css'
-css_content = read_css_file(css_file_path)
-updated_css_content = process_and_encrypt_class_names(css_content)
-new_file_path = write_to_new_file(css_file_path, updated_css_content)
-
-print(f"Yeni dosya oluşturuldu: {new_file_path}")
-=======
     updated_css_content = css_content
     for class_name in class_names:
         class_name_clean = class_name.lstrip('.')
@@ -163,4 +100,3 @@ def process_files(api_response, static_dir='static/uploads'):
                 html_content = read_css_file(html_php_file_path)
                 updated_html_content = replace_class_names_in_html(html_content, class_mapping)
                 write_to_new_file(html_php_file_path, updated_html_content)
->>>>>>> 40f5801 (Update App)
