@@ -1,8 +1,10 @@
 import os
 import chardet
-from flask import Blueprint, request, jsonify
-from werkzeug.utils import secure_filename
 from bs4 import BeautifulSoup
+from datetime import datetime
+from werkzeug.utils import secure_filename
+from flask import Blueprint, request, jsonify
+from functions.css_class_encryptor import process_files
 
 api_blueprint = Blueprint('api', __name__)
 
@@ -10,23 +12,25 @@ UPLOAD_FOLDER = 'static/uploads'
 ALLOWED_EXTENSIONS = {'html', 'css', 'php'}
 
 def allowed_file(filename):
-    """Dosya uzantısının izin verilenler arasında olup olmadığını kontrol et."""
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 def extract_css_files(html_content):
-    """HTML içindeki <link> etiketlerinden CSS dosyalarını bul."""
     soup = BeautifulSoup(html_content, 'html.parser')
     css_files = [link.get('href') for link in soup.find_all('link', rel='stylesheet')]
     return css_files
 
 def read_file_with_detected_encoding(file_path):
-    """Dosya kodlamasını otomatik tespit edip dosyayı okuyun."""
     with open(file_path, 'rb') as f:
         raw_data = f.read()
         result = chardet.detect(raw_data)
         encoding = result['encoding']
     with open(file_path, 'r', encoding=encoding) as f:
         return f.read()
+def find_zip_file(folder):
+    for file in os.listdir(folder):
+        if file.endswith('.zip'):
+            return file
+    return None
 
 @api_blueprint.route('/upload', methods=['POST'])
 def upload_file():
@@ -101,4 +105,16 @@ def upload_file():
         if os.path.isfile(file_path):
             os.remove(file_path)
 
-    return jsonify(html_css_map)
+    process_files(html_css_map)
+
+    zip_filename = find_zip_file(UPLOAD_FOLDER)
+    if zip_filename is None:
+        return jsonify({'error': 'Zip file not found'}), 500
+
+    zip_file_url = f"/static/uploads/{zip_filename}"
+
+    return jsonify({
+        'html_css_map': html_css_map,
+        'zip_file_url': zip_file_url
+    })
+

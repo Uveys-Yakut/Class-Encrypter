@@ -315,8 +315,8 @@
                                 <label for="css_files">Select CSS Files:</label>
                                 <input type="file" id="css_files" name="css_files" accept=".css" multiple>
                             </div>
-                            <input type="submit" value="Upload">
-                            <input type="button" value="Start App">
+                            <input type="submit" value="Start App">
+                            <!-- <input type="button" value="Start App"> -->
                         </form>
                         <div class="fl-lst" id="fl-lst"></div>
                         <div id="err-cntnr">
@@ -546,15 +546,51 @@
             return response.json();
         })
         .then(data => {
-            console.log(data)
-            document.getElementsByClassName('sdbr_wrpr')[0].style.width = "240px";
-            generateFileList(data);
+            console.log(data);
+
+            if (data.html_css_map) {        
+                document.getElementsByClassName('sdbr_wrpr')[0].style.width = "240px";
+                var elements = document.getElementsByClassName("fl-lst-cntnt");
+                for (var i = 0; i < elements.length; i++) {
+                    elements[i].style.gridTemplateColumns = "repeat(auto-fill, minmax(100px, 1fr))";
+                }
+                generateFileList(data.html_css_map);
+            }
+        
+            if (data.zip_file_url) {
+                fetch(data.zip_file_url)
+                .then(response => {
+                    if (!response.ok) {
+                        showError(`Failed to fetch ZIP file with status ${response.status}: ${response.statusText}`);
+                        return;
+                    }
+                    return response.blob();
+                })
+                .then(blob => {
+                    const url = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = data.zip_file_url.split('/').pop();
+                    document.body.appendChild(a);
+                    a.click();
+                    a.remove();
+                    window.URL.revokeObjectURL(url);
+                })
+                .catch(error => {
+                    showError(`Error downloading the ZIP file: ${error.message}`);
+                    console.error('Error:', error);
+                });
+            } else {
+                showError('No ZIP file URL provided.');
+            }
+        
             console.log(document.getElementsByClassName('sdbr_wrpr'));
         })
         .catch(error => {
             showError(`An error occurred during file upload: ${error.message}`);
             console.error('Error:', error);
         });
+        
         
     });    
 >>>>>>> 40f5801 (Update App)

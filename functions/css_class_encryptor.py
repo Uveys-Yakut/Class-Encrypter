@@ -8,8 +8,8 @@ import os
 import re
 import base64
 import hashlib
+import zipfile
 from pathlib import Path
->>>>>>> 40f5801 (Update App)
 
 def hash_with_salt(input_string, salt=None, length=6):
     if salt is None:
@@ -138,14 +138,38 @@ def replace_class_names_in_html(html_content, class_mapping):
     updated_html = re.sub(pattern, replacer, html_content)
     return updated_html
 
+def zip_files_with_folders(grouped_files, output_zip_path):
+    with zipfile.ZipFile(output_zip_path, 'w') as zip_file:
+        for group_number, files in enumerate(grouped_files, 1):
+            folder_name = f"hashed_{group_number}"
+            for file_path in files:
+                zip_file.write(file_path, arcname=f"{folder_name}/{file_path.name}")
+    print(f"Files zipped to: {output_zip_path}")
+
+def delete_files(file_paths, zip_file_path):
+    for file_path in file_paths:
+        file_path = Path(file_path)
+
+        if file_path != zip_file_path and file_path.is_file():
+            try:
+                file_path.unlink()
+                print(f"Deleted file: {file_path}")
+            except Exception as e:
+                print(f"Error deleting file {file_path}: {e}")
+        else:
+            print(f"Skipping zip file or directory: {file_path}")
+
 def process_files(api_response, static_dir='static/uploads'):
     project_root = Path(__file__).parent.parent
     static_path = project_root / static_dir
     
-    for file_path, css_files in api_response.items():
+    grouped_files = []
+    
+    for file_index, (file_path, css_files) in enumerate(api_response.items(), 1):
         file_path = Path(file_path)
-        
         class_mapping = {}
+        group = []
+        
         for css_file in css_files:
             css_file_path = static_path / css_file
 
@@ -153,8 +177,8 @@ def process_files(api_response, static_dir='static/uploads'):
                 css_content = read_css_file(css_file_path)
                 if css_content:
                     updated_css_content, css_class_mapping = process_and_encrypt_class_names(css_content)
-                    write_to_new_file(css_file_path, updated_css_content)
-                    
+                    new_css_file_path = write_to_new_file(css_file_path, updated_css_content)
+                    group.append(new_css_file_path)
                     class_mapping.update(css_class_mapping)
         
         for ext in ['html', 'php']:
@@ -163,4 +187,3 @@ def process_files(api_response, static_dir='static/uploads'):
                 html_content = read_css_file(html_php_file_path)
                 updated_html_content = replace_class_names_in_html(html_content, class_mapping)
                 write_to_new_file(html_php_file_path, updated_html_content)
->>>>>>> 40f5801 (Update App)
