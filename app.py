@@ -6,7 +6,6 @@ app = Flask(__name__)
 CORS(app)
 app.config['UPLOAD_FOLDER'] = 'static/uploads'
 
-# API Blueprint'ini uygulamaya ekle
 app.register_blueprint(api_blueprint, url_prefix='/api')
 
 @app.route("/")
