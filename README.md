@@ -1,19 +1,19 @@
 # Class Encrypter
 
-## Explanation
+## 🔐 Explanation
 
 Encrypts the names of classes in CSS files used in HTML and PHP files.
 
-## Screenshots
+## 📸 Screenshots
 ![Application Screenshot](screenshot_first.png)
 ![Application Screenshot](screenshot_second.png)
 ![Application Screenshot](screenshot_thrith.png)
 
-## Setup
+## ⚙️ Setup
 
 To run your project on your local machine, follow these steps:
 
-### Requirements
+### 🛠️ Requirements
 
 - Python 3.x
 - **Flask:** Web application framework. `Flask==2.3.2`
@@ -21,7 +21,7 @@ To run your project on your local machine, follow these steps:
 - **BeautifulSoup4:** Library for parsing HTML and XML. `beautifulsoup4==4.12.2`
 - **Chardet:** Library for detecting character encodings. `chardet==5.1.0`
 
-### Steps
+### 🚀 Steps
 
 1. **Clone this repository**: Open a terminal and run:
    ```bash
