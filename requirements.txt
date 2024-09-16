@@ -1,0 +1,4 @@
+Flask==2.3.2
+werkzeug==2.3.2
+beautifulsoup4==4.12.2
+chardet==5.1.0

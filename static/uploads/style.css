@@ -1,26 +1,26 @@
 @font-face {
     font-family: "SourceSansPro";
-    src: url("/static/fonts/SourceSansPro-Regular.ttf");
+    src: url("fonts/SourceSansPro-Regular.ttf");
 }
 @font-face {
     font-family: "WoodDragon";
-    src: url("/static/fonts/WoodDragon.ttf");
+    src: url("fonts/WoodDragon.ttf");
 }
 @font-face {
     font-family: "GetVoIPGrotesque";
-    src: url("/static/fonts/GetVoIPGrotesque.ttf");
+    src: url("fonts/GetVoIPGrotesque.ttf");
 }
 @font-face {
     font-family: "KanitRegular";
-    src: url("/static/fonts/Kanit-Regular.ttf");
+    src: url("fonts/Kanit-Regular.ttf");
 }
 @font-face {
     font-family: "RubikRegular";
-    src: url("/static/fonts/Rubik-Regular.ttf");
+    src: url("fonts/Rubik-Regular.ttf");
 }
 @font-face {
     font-family: "RubikPixelsRegular";
-    src: url("/static/fonts/RubikPixels-Regular.ttf");
+    src: url("fonts/RubikPixels-Regular.ttf");
 }
 *::-webkit-scrollbar {
     width: .8em;
