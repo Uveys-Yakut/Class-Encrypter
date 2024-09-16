@@ -6,7 +6,7 @@ Encrypts the names of classes in CSS files used in HTML and PHP files.
 
 ## Setup
 
-Projenizi yerel makinenizde çalıştırmak için aşağıdaki adımları izleyin:
+To run your project on your local machine, follow these steps:
 
 ### Requirements
 
@@ -18,20 +18,16 @@ Projenizi yerel makinenizde çalıştırmak için aşağıdaki adımları izleyi
 
 ### Steps
 
-1. **Clone this repository**:
-   \nOpen a terminal and run:
+1. **Clone this repository**: Open a terminal and run:
    ```bash
    git clone https://github.com/your_username/repo_name.git
-2. **Navigate to the Project Directory**:
-   Install the required Python packages: 
+2. **Navigate to the Project Directory**: Install the required Python packages: 
    ```bash
    pip install -r requirements.txt
-3. **Set Up Environment Variables (if needed)**:
-  Create a .env file in the project root directory. Add necessary environment variables:
+3. **Set Up Environment Variables (if needed)**: Create a .env file in the project root directory. Add necessary environment variables:
    ```bash
    FLASK_ENV=development
    SECRET_KEY=your_secret_key
-4. **Start the Application**:
-   Run the application using:
+4. **Start the Application**: Run the application using:
    ```bash
    python app.py
