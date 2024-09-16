@@ -19,7 +19,7 @@ Projenizi yerel makinenizde çalıştırmak için aşağıdaki adımları izleyi
 ### Steps
 
 1. **Clone this repository**:
-   Open a terminal and run:
+   \nOpen a terminal and run:
    ```bash
    git clone https://github.com/your_username/repo_name.git
 2. **Navigate to the Project Directory**:
