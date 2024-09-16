@@ -5,9 +5,9 @@
 Encrypts the names of classes in CSS files used in HTML and PHP files.
 
 ## Screenshots
-![Application Screenshot](screenshot_1.png)
-![Application Screenshot](screenshot_2.png)
-![Application Screenshot](screenshot_3.png)
+![Application Screenshot](screenshot_first.png)
+![Application Screenshot](screenshot_second.png)
+![Application Screenshot](screenshot_thrith.png)
 
 ## Setup
 
