@@ -4,11 +4,6 @@
 
 Encrypts the names of classes in CSS files used in HTML and PHP files.
 
-## 📸 Screenshots
-![Application Screenshot](screenshot_first.png)
-![Application Screenshot](screenshot_second.png)
-![Application Screenshot](screenshot_thrith.png)
-
 ## ⚙️ Setup
 
 To run your project on your local machine, follow these steps:
@@ -36,3 +31,8 @@ To run your project on your local machine, follow these steps:
 4. **Start the Application**: Run the application using:
    ```bash
    python app.py
+
+## 📸 Screenshots
+![Application Screenshot](screenshot_first.png)
+![Application Screenshot](screenshot_second.png)
+![Application Screenshot](screenshot_thrith.png)
