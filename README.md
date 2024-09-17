@@ -24,11 +24,7 @@ To run your project on your local machine, follow these steps:
 2. **Navigate to the Project Directory**: Install the required Python packages: 
    ```bash
    pip install -r requirements.txt
-3. **Set Up Environment Variables (if needed)**: Create a .env file in the project root directory. Add necessary environment variables:
-   ```bash
-   FLASK_ENV=development
-   SECRET_KEY=your_secret_key
-4. **Start the Application**: Run the application using:
+3. **Start the Application**: Run the application using:
    ```bash
    python app.py
 
