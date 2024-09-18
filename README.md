@@ -17,12 +17,18 @@ To run your project on your local machine, follow these steps:
 ### 🚀 Steps
 
 1. **Clone this repository**: Open a terminal and run:
+   
+
    ```bash
    git clone https://github.com/Uveys-Yakut/class-encrypter.git
-2. **Navigate to the Project Directory**: Install the required Python packages: 
+3. **Navigate to the Project Directory**: Install the required Python packages: 
+
+
    ```bash
    pip install -r requirements.txt
-3. **Start the Application**: Run the application using:
+5. **Start the Application**: Run the application using:
+
+
    ```bash
    python app.py
 
