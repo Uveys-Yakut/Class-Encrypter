@@ -1,5 +1,3 @@
-# Class Encrypter
-
 ## 🔐 Explanation
 
 Encrypts the names of classes in CSS files used in HTML and PHP files.
